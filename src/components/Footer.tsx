@@ -127,6 +127,18 @@ export default function Footer() {
         {/* Bottom Bar matching reference */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-center text-center gap-2 text-xs text-neutral-500 font-light">
           <p>© {new Date().getFullYear()} Midway Kuzhimandhi. All Rights Reserved.</p>
+
+        <p className="mt-2 text-xs opacity-75 text-center">
+          Powered by{" "}
+          <a
+            href="https://www.crevionads.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium underline hover:opacity-100 transition-opacity"
+          >
+            Crevion Ads
+          </a>
+        </p>
         </div>
       </div>
     </footer>
