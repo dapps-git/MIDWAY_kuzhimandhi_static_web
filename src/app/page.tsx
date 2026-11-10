@@ -178,66 +178,29 @@ export default function HomePage() {
             Find a Midway Kuzhimandhi near you • Tap any branch for outlet details & Google Map location
           </p>
 
-          {/* Row 1: Manjeri, Perinthalmanna, Vaniyambalam (3 location cards) */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {BRANCHES.slice(0, 3).map((branch) => (
+          {/* 5 Branches: 3 cards top, 2 cards centered bottom with perfectly balanced widths */}
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            {BRANCHES.map((branch) => (
               <Link
                 key={branch.id}
                 href={`/branches/${branch.id}`}
-                className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-sm hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1 block text-left"
+                className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-sm hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1 block text-left flex flex-col"
               >
-                <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-neutral-900 border-b border-neutral-100">
+                <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-neutral-900 border-b border-neutral-100">
                   <img
                     src={branch.image}
                     alt={`${branch.area} Storefront`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-white">
+                  <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white">
                     <span className="text-xs font-bold drop-shadow">{branch.area}</span>
-                    <span className="text-[10px] font-semibold bg-[#800C11] px-2 py-0.5 rounded-full shadow-sm">
+                    <span className="text-[10px] font-semibold bg-[#800C11] px-2.5 py-0.5 rounded-full shadow-sm">
                       View Page →
                     </span>
                   </div>
                 </div>
-                <div className="py-2.5 px-3 flex items-center justify-between text-center">
-                  <div className="flex items-center gap-1.5">
-                    <MapPinIcon className="w-3.5 h-3.5 shrink-0" style={{ color: "#800C11" }} />
-                    <span className="font-semibold text-xs sm:text-sm text-neutral-900 group-hover:text-[#800C11] transition-colors">
-                      {branch.area}
-                    </span>
-                  </div>
-                  <span className="text-[11px] font-medium text-neutral-500 group-hover:text-[#800C11] transition-colors">
-                    Location & Info →
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Row 2: Nilambur, Valluvambram (2 location cards centered) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto mt-4">
-            {BRANCHES.slice(3, 5).map((branch) => (
-              <Link
-                key={branch.id}
-                href={`/branches/${branch.id}`}
-                className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-sm hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1 block text-left"
-              >
-                <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-neutral-900 border-b border-neutral-100">
-                  <img
-                    src={branch.image}
-                    alt={`${branch.area} Storefront`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-white">
-                    <span className="text-xs font-bold drop-shadow">{branch.area}</span>
-                    <span className="text-[10px] font-semibold bg-[#800C11] px-2 py-0.5 rounded-full shadow-sm">
-                      View Page →
-                    </span>
-                  </div>
-                </div>
-                <div className="py-2.5 px-3 flex items-center justify-between text-center">
+                <div className="py-3 px-3.5 flex items-center justify-between text-center bg-white mt-auto">
                   <div className="flex items-center gap-1.5">
                     <MapPinIcon className="w-3.5 h-3.5 shrink-0" style={{ color: "#800C11" }} />
                     <span className="font-semibold text-xs sm:text-sm text-neutral-900 group-hover:text-[#800C11] transition-colors">

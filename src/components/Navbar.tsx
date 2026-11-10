@@ -69,29 +69,29 @@ export default function Navbar() {
           WebkitBackdropFilter: "blur(12px)",
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 flex items-center justify-between min-h-[48px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 flex items-center justify-between min-h-[52px]">
           {/* Logo */}
           <Link href="/" className="flex items-center group transition-transform hover:scale-105 shrink-0">
             <img
               src="/images/logo.png"
               alt="Midway Kuzhimandhi"
-              className="h-7 sm:h-9 w-auto max-w-[140px] sm:max-w-[170px] object-contain block"
+              className="h-8 sm:h-9 md:h-10 w-auto max-w-[140px] sm:max-w-[170px] object-contain block"
               style={{ filter: "brightness(0) invert(1)" }}
             />
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <nav className="hidden md:flex items-center gap-1.5 lg:gap-3">
             {navLinks.map((link) => {
               const active = isActive(link.href);
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-3.5 py-1 rounded-full text-xs font-semibold transition-all duration-200 ${
+                  className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-[13px] lg:text-sm font-semibold tracking-wide transition-all duration-200 whitespace-nowrap ${
                     active
-                      ? "bg-white text-[#800C11] shadow-sm font-bold"
-                      : "text-white/90 hover:text-amber-300 hover:bg-white/10"
+                      ? "bg-white text-[#800C11] shadow-md font-bold"
+                      : "text-white/90 hover:text-white hover:bg-white/15"
                   }`}
                 >
                   {link.name}
@@ -101,12 +101,12 @@ export default function Navbar() {
           </nav>
 
           {/* Right Action: Clean Branch Button on Desktop */}
-          <div className="hidden sm:flex items-center space-x-2">
+          <div className="hidden sm:flex items-center shrink-0">
             <Link
               href="/branches"
-              className="px-3.5 py-1.5 rounded-full text-xs font-bold text-[#800C11] bg-amber-300 hover:bg-amber-200 shadow transition-all flex items-center gap-1.5 hover:scale-105"
+              className="px-4 py-1.5 lg:py-2 rounded-full text-xs lg:text-sm font-bold text-neutral-900 bg-amber-400 hover:bg-amber-300 shadow-md transition-all flex items-center gap-2 hover:scale-105 shrink-0"
             >
-              <MapPinIcon className="w-3.5 h-3.5" />
+              <MapPinIcon className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#800C11]" />
               <span>Branches</span>
             </Link>
           </div>
