@@ -26,21 +26,24 @@ export default function AboutPage() {
       {/* Story & Image Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-18">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-            <Image
-              src="/images/hero-mandhi.jpg"
-              alt="Midway Kuzhimandi Tradition"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 text-white">
-              <span className="px-3 py-1 rounded-full bg-[#A81B1E] text-xs font-bold uppercase tracking-wider">
-                Clay-Pit Smoked Daily
-              </span>
-              <p className="text-2xl font-bold mt-2">
-                Honoring Century-Old Smoked Mandhi Traditions
-              </p>
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-gradient-to-br from-[#FFF8F3] via-amber-50/40 to-neutral-50 flex items-center justify-center p-6">
+            <div className="relative w-full max-w-[300px] aspect-square">
+              <Image
+                src="/images/about-dish.png"
+                alt="Midway Kuzhimandi Tradition"
+                fill
+                className="object-contain filter drop-shadow-[0_16px_30px_rgba(128,12,17,0.20)]"
+              />
+            </div>
+            <div className="absolute bottom-6 left-6 right-6">
+              <div className="bg-black/70 backdrop-blur-md p-3.5 rounded-2xl text-white">
+                <span className="px-3 py-1 rounded-full bg-[#A81B1E] text-xs font-bold uppercase tracking-wider">
+                  Clay-Pit Smoked Daily
+                </span>
+                <p className="text-base sm:text-lg font-bold mt-1.5">
+                  Honoring Century-Old Smoked Mandhi Traditions
+                </p>
+              </div>
             </div>
           </div>
 

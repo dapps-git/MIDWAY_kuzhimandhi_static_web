@@ -25,66 +25,80 @@ export default function HomePage() {
         </div>
 
         {/* Content Layer (Overlaid on top of the hero banner image) */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-18 flex flex-col items-center">
-          {/* Top Label: — AUTHENTIC — */}
-          <div className="flex items-center justify-center gap-3 mb-1">
-            <span className="w-8 sm:w-12 h-px bg-amber-400 opacity-90" />
-            <span className="text-[10px] sm:text-xs tracking-[0.3em] uppercase font-bold text-amber-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-              A U T H E N T I C
-            </span>
-            <span className="w-8 sm:w-12 h-px bg-amber-400 opacity-90" />
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 flex flex-col items-center justify-between min-h-[460px] sm:min-h-[520px]">
+          {/* Main Top/Center Hero Content */}
+          <div className="flex flex-col items-center text-center mt-4 sm:mt-6">
+            {/* Top Label: — AUTHENTIC — */}
+            <div className="flex items-center justify-center gap-3 mb-1">
+              <span className="w-8 sm:w-12 h-px bg-amber-400 opacity-90" />
+              <span className="text-[10px] sm:text-xs tracking-[0.3em] uppercase font-bold text-amber-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                A U T H E N T I C
+              </span>
+              <span className="w-8 sm:w-12 h-px bg-amber-400 opacity-90" />
+            </div>
+
+            {/* Headline: Kuzhimandhi (Reduced font weight as requested) */}
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-none text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] mt-1">
+              Kuzhimandhi
+            </h1>
+
+            {/* Subtitle: Rich Taste. Traditional Feel. */}
+            <p className="italic text-base sm:text-xl md:text-2xl font-light mt-1.5 text-amber-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+              Rich Taste. Traditional Feel.
+            </p>
+
+            {/* Petite 3-Column Floating Feature Card with Guaranteed Small Text Size */}
+            <div className="w-full max-w-[190px] sm:max-w-[210px] bg-white/95 backdrop-blur-md rounded-xl border border-neutral-200/90 shadow-md py-1 px-1 mt-2.5 sm:mt-3 grid grid-cols-3 divide-x divide-neutral-200 text-neutral-900">
+              {/* Col 1: Authentic Flavors */}
+              <div className="flex flex-col items-center justify-center px-0.5 py-0.5 text-center">
+                <svg className="w-3 h-3 mb-0.5 shrink-0" style={{ color: "#800C11" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M6 14v4a2 2 0 002 2h8a2 2 0 002-2v-4M4 14a4 4 0 012.828-6.828A4.975 4.975 0 0112 5a4.975 4.975 0 015.172 2.172A4 4 0 0120 14H4z" />
+                </svg>
+                <span
+                  style={{ fontSize: "8px", lineHeight: "1.15" }}
+                  className="font-normal text-neutral-800 tracking-tight block"
+                >
+                  Authentic<br />Flavors
+                </span>
+              </div>
+
+              {/* Col 2: Freshly Prepared */}
+              <div className="flex flex-col items-center justify-center px-0.5 py-0.5 text-center">
+                <svg className="w-3 h-3 mb-0.5 shrink-0" style={{ color: "#800C11" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                </svg>
+                <span
+                  style={{ fontSize: "8px", lineHeight: "1.15" }}
+                  className="font-normal text-neutral-800 tracking-tight block"
+                >
+                  Freshly<br />Prepared
+                </span>
+              </div>
+
+              {/* Col 3: A Delightful Experience */}
+              <div className="flex flex-col items-center justify-center px-0.5 py-0.5 text-center">
+                <svg className="w-3 h-3 mb-0.5 shrink-0" style={{ color: "#800C11" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span
+                  style={{ fontSize: "8px", lineHeight: "1.15" }}
+                  className="font-normal text-neutral-800 tracking-tight block"
+                >
+                  A Delightful<br />Experience
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Bold Headline: Kuzhimandhi */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-none text-white drop-shadow-[0_3px_8px_rgba(0,0,0,0.9)] mt-1">
-            Kuzhimandhi
-          </h1>
-
-          {/* Subtitle: Rich Taste. Traditional Feel. */}
-          <p className="italic text-base sm:text-xl md:text-2xl font-light mt-1.5 text-amber-200 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-            Rich Taste. Traditional Feel.
-          </p>
-
-          {/* Explore 5 Branches in Normal Text (Without any button background) */}
-          <Link
-            href="#branches-section"
-            className="mt-3.5 inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium tracking-wide text-amber-300 hover:text-white transition-colors cursor-pointer group drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]"
-          >
-            <span className="underline underline-offset-4 decoration-amber-400/70">Explore 5 Branches</span>
-            <span className="text-amber-300 group-hover:translate-x-1 transition-transform font-bold">➔</span>
-          </Link>
-
-          {/* Reduced 3-Column Floating Feature Card (Compact size & small icons as requested) */}
-          <div className="w-full max-w-[270px] sm:max-w-[320px] bg-white/95 backdrop-blur-xs rounded-xl border border-neutral-200/90 shadow-xl py-1.5 px-2.5 sm:py-2 sm:px-3 mt-4 sm:mt-5 grid grid-cols-3 divide-x divide-neutral-200 text-neutral-900">
-            {/* Col 1: Authentic Flavors */}
-            <div className="flex flex-col items-center justify-center px-1 py-0.5 text-center">
-              <svg className="w-3.5 h-3.5 mb-0.5" style={{ color: "#800C11" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M6 14v4a2 2 0 002 2h8a2 2 0 002-2v-4M4 14a4 4 0 012.828-6.828A4.975 4.975 0 0112 5a4.975 4.975 0 015.172 2.172A4 4 0 0120 14H4z" />
-              </svg>
-              <span className="font-light text-neutral-800 text-[9px] sm:text-[10px] leading-tight">
-                Authentic<br />Flavors
-              </span>
-            </div>
-
-            {/* Col 2: Freshly Prepared */}
-            <div className="flex flex-col items-center justify-center px-1 py-0.5 text-center">
-              <svg className="w-3.5 h-3.5 mb-0.5" style={{ color: "#800C11" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-              </svg>
-              <span className="font-light text-neutral-800 text-[9px] sm:text-[10px] leading-tight">
-                Freshly<br />Prepared
-              </span>
-            </div>
-
-            {/* Col 3: A Delightful Experience */}
-            <div className="flex flex-col items-center justify-center px-1 py-0.5 text-center">
-              <svg className="w-3.5 h-3.5 mb-0.5" style={{ color: "#800C11" }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span className="font-light text-neutral-800 text-[9px] sm:text-[10px] leading-tight">
-                A Delightful<br />Experience
-              </span>
-            </div>
+          {/* Explore 5 Branches Placed at Bottom of Hero Section */}
+          <div className="mt-8 sm:mt-12 mb-3 sm:mb-4 z-20">
+            <Link
+              href="#branches-section"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold tracking-wide text-amber-300 hover:text-white transition-colors cursor-pointer group drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] bg-black/45 backdrop-blur-sm px-4 py-1.5 rounded-full border border-amber-300/40 hover:border-amber-300"
+            >
+              <span className="underline underline-offset-4 decoration-amber-400/80">Explore 5 Branches</span>
+              <span className="text-amber-300 group-hover:translate-x-1 transition-transform font-bold">➔</span>
+            </Link>
           </div>
         </div>
 
@@ -135,13 +149,15 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Right Column: Restaurant Image */}
-          <div className="lg:col-span-6 rounded-2xl overflow-hidden shadow-xl border border-neutral-200 aspect-[16/10] w-full">
-            <img
-              src="/images/about-storefront.jpg"
-              alt="Midway Kuzhimandhi Restaurant Exterior"
-              className="w-full h-full object-cover"
-            />
+          {/* Right Column: Authentic Mandhi Dish Image (Clean, Borderless) */}
+          <div className="lg:col-span-6 flex items-center justify-center p-2 sm:p-4">
+            <div className="relative w-full max-w-[290px] sm:max-w-[320px] aspect-square transition-transform duration-500 hover:scale-105">
+              <img
+                src="/images/about-dish.png"
+                alt="Midway Kuzhimandhi Platter"
+                className="w-full h-full object-contain filter drop-shadow-[0_16px_30px_rgba(128,12,17,0.20)]"
+              />
+            </div>
           </div>
         </div>
 
@@ -159,62 +175,80 @@ export default function HomePage() {
           </div>
 
           <p className="italic text-xs sm:text-sm text-neutral-600 font-light mb-6">
-            Find a Midway Kuzhimandhi near you • Tap any branch to open in Google Maps
+            Find a Midway Kuzhimandhi near you • Tap any branch for outlet details & Google Map location
           </p>
 
           {/* Row 1: Manjeri, Perinthalmanna, Vaniyambalam (3 location cards) */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {BRANCHES.slice(0, 3).map((branch) => (
-              <a
+              <Link
                 key={branch.id}
-                href={branch.googleMapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/branches/${branch.id}`}
                 className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-sm hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1 block text-left"
               >
-                <div className="relative h-32 sm:h-36 w-full overflow-hidden bg-neutral-100 border-b border-neutral-100">
+                <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-neutral-900 border-b border-neutral-100">
                   <img
                     src={branch.image}
-                    alt={`${branch.area} Location Map`}
+                    alt={`${branch.area} Storefront`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-white">
+                    <span className="text-xs font-bold drop-shadow">{branch.area}</span>
+                    <span className="text-[10px] font-semibold bg-[#800C11] px-2 py-0.5 rounded-full shadow-sm">
+                      View Page →
+                    </span>
+                  </div>
                 </div>
-                <div className="py-2.5 px-3 flex items-center justify-center gap-1.5 text-center">
-                  <MapPinIcon className="w-3.5 h-3.5 shrink-0" style={{ color: "#800C11" }} />
-                  <span className="font-semibold text-xs sm:text-sm text-neutral-900 group-hover:text-[#800C11] transition-colors">
-                    {branch.area}
+                <div className="py-2.5 px-3 flex items-center justify-between text-center">
+                  <div className="flex items-center gap-1.5">
+                    <MapPinIcon className="w-3.5 h-3.5 shrink-0" style={{ color: "#800C11" }} />
+                    <span className="font-semibold text-xs sm:text-sm text-neutral-900 group-hover:text-[#800C11] transition-colors">
+                      {branch.area}
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-medium text-neutral-500 group-hover:text-[#800C11] transition-colors">
+                    Location & Info →
                   </span>
-                  <span className="text-[10px] text-neutral-400 group-hover:text-[#800C11] ml-0.5">↗</span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 
-          {/* Row 2: Nilambur, Valluvalmbram (2 location cards centered) */}
+          {/* Row 2: Nilambur, Valluvambram (2 location cards centered) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto mt-4">
             {BRANCHES.slice(3, 5).map((branch) => (
-              <a
+              <Link
                 key={branch.id}
-                href={branch.googleMapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/branches/${branch.id}`}
                 className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-sm hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1 block text-left"
               >
-                <div className="relative h-32 sm:h-36 w-full overflow-hidden bg-neutral-100 border-b border-neutral-100">
+                <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-neutral-900 border-b border-neutral-100">
                   <img
                     src={branch.image}
-                    alt={`${branch.area} Location Map`}
+                    alt={`${branch.area} Storefront`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-white">
+                    <span className="text-xs font-bold drop-shadow">{branch.area}</span>
+                    <span className="text-[10px] font-semibold bg-[#800C11] px-2 py-0.5 rounded-full shadow-sm">
+                      View Page →
+                    </span>
+                  </div>
                 </div>
-                <div className="py-2.5 px-3 flex items-center justify-center gap-1.5 text-center">
-                  <MapPinIcon className="w-3.5 h-3.5 shrink-0" style={{ color: "#800C11" }} />
-                  <span className="font-semibold text-xs sm:text-sm text-neutral-900 group-hover:text-[#800C11] transition-colors">
-                    {branch.area}
+                <div className="py-2.5 px-3 flex items-center justify-between text-center">
+                  <div className="flex items-center gap-1.5">
+                    <MapPinIcon className="w-3.5 h-3.5 shrink-0" style={{ color: "#800C11" }} />
+                    <span className="font-semibold text-xs sm:text-sm text-neutral-900 group-hover:text-[#800C11] transition-colors">
+                      {branch.area}
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-medium text-neutral-500 group-hover:text-[#800C11] transition-colors">
+                    Location & Info →
                   </span>
-                  <span className="text-[10px] text-neutral-400 group-hover:text-[#800C11] ml-0.5">↗</span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { BRANCHES } from "@/data/branches";
 import { MapPinIcon, ClockIcon, PhoneIcon } from "./Icons";
 
@@ -37,11 +38,9 @@ export default function BranchesTrain() {
           {trainCarriages.map((branch, index) => {
             const outletNumber = (index % BRANCHES.length) + 1;
             return (
-              <a
+              <Link
                 key={`${branch.id}-${index}`}
-                href={branch.googleMapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/branches/${branch.id}`}
                 className="inline-block w-[280px] sm:w-[320px] bg-neutral-800/90 hover:bg-[#221617] border border-neutral-700 hover:border-[#A81B1E] rounded-2xl p-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-red-950/40 text-left shrink-0 group/card relative overflow-hidden"
               >
                 {/* Carriage Coupler / Number Badge */}
@@ -76,12 +75,12 @@ export default function BranchesTrain() {
                     Till Midnight
                   </span>
 
-                  <span className="text-[#A81B1E] group-hover/card:text-white font-bold text-[11px] flex items-center gap-1 group-hover/card:underline">
-                    <span>Google Maps</span>
+                  <span className="text-amber-300 group-hover/card:text-white font-bold text-[11px] flex items-center gap-1 group-hover/card:underline">
+                    <span>View Branch</span>
                     <span>→</span>
                   </span>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>
