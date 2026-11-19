@@ -140,13 +140,13 @@ a, button {
 
 /* User Defined Hero Section CSS (Desktop) */
 .hero-section, .hero {
-  min-height: calc(100vh - 90px);
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 45% 55%;
   align-items: center;
   max-width: 1500px;
   margin: auto;
-  padding: 70px 6%;
+  padding: 120px 6% 60px;
   overflow: hidden;
 }
 
@@ -177,7 +177,7 @@ a, button {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding: 85px 20px 32px;
+    padding: 135px 20px 32px;
     gap: 16px;
     min-height: auto;
   }

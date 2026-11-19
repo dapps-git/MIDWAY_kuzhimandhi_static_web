@@ -78,8 +78,10 @@ export default function SignatureDishesCarousel() {
   const [containerWidth, setContainerWidth] = useState(1200);
 
   const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
   const touchEndX = useRef<number>(0);
-  const isNavigating = useRef<boolean>(false);
+  const touchEndY = useRef<number>(0);
+  const isSwiping = useRef<boolean>(false);
 
   useEffect(() => {
     const updateWidth = () => {
@@ -102,17 +104,27 @@ export default function SignatureDishesCarousel() {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
-    touchEndX.current = e.touches[0].clientX; // Prevents tap from triggering swipe
+    touchStartY.current = e.touches[0].clientY;
+    touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
+    isSwiping.current = true;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isSwiping.current) return;
     touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) {
+    if (!isSwiping.current) return;
+    isSwiping.current = false;
+    const diffX = touchStartX.current - touchEndX.current;
+    const diffY = touchStartY.current - touchEndY.current;
+
+    // Must be predominantly horizontal gesture of at least 35px
+    if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY) * 1.2) {
+      if (diffX > 0) {
         handleNext();
       } else {
         handlePrev();
@@ -120,7 +132,11 @@ export default function SignatureDishesCarousel() {
     }
   };
 
-  // Dimensions matching the reference screenshot:
+  const handleTouchCancel = () => {
+    isSwiping.current = false;
+  };
+
+  // Dimensions
   const isMobile = containerWidth < 768;
   const isTablet = containerWidth >= 768 && containerWidth < 1100;
 
@@ -134,23 +150,25 @@ export default function SignatureDishesCarousel() {
   const step = cardWidth + gap;
 
   return (
-    <section className="relative py-16 sm:py-24 bg-white text-black overflow-hidden border-t border-neutral-200 select-none">
+    <section className="relative py-14 sm:py-20 bg-white text-black overflow-hidden border-t border-neutral-200 select-none">
       <div className="w-full max-w-[1600px] mx-auto px-2 sm:px-4">
         
         {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12">
+        <div className="text-center mb-6 sm:mb-10">
           <h2 className="text-[11px] sm:text-xs uppercase tracking-[4px] sm:tracking-[5px] text-neutral-800 font-medium">
             SIGNATURE DISHES & DRINKS
           </h2>
         </div>
 
-        {/* Carousel Viewport Container: Fixed height with absolute center layout (Can NEVER go blank) */}
+        {/* Carousel Viewport Container: Top-anchored layout with touch-action: pan-y */}
         <div
           ref={containerRef}
-          className="relative w-full overflow-hidden h-[510px] sm:h-[560px] flex items-center justify-center"
+          className="relative w-full overflow-hidden h-[490px] sm:h-[530px]"
+          style={{ touchAction: "pan-y" }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchCancel}
         >
           {SIGNATURE_DISHES.map((dish, i) => {
             // Calculate circular offset from activeIndex: -2, -1, 0, 1, 2, etc.
@@ -166,96 +184,90 @@ export default function SignatureDishesCarousel() {
               <div
                 key={dish.id}
                 onClick={() => {
-                  if (isNavigating.current) return;
                   setActiveIndex(i);
                 }}
-                className="absolute top-1/2 left-1/2 cursor-pointer flex flex-col items-center will-change-transform"
+                className="absolute top-3 sm:top-5 left-1/2 cursor-pointer flex flex-col items-center will-change-transform"
                 style={{
                   width: `${cardWidth}px`,
-                  transform: `translate3d(calc(-50% + ${diff * step}px), calc(-50% + ${
-                    isCenter ? (isMobile ? -14 : -18) : 0
-                  }px), 0)`,
-                  transition:
-                    "transform 0.7s cubic-bezier(0.25, 1, 0.35, 1), opacity 0.5s ease",
+                  // Fixed horizontal centering + step offset; NO dynamic translateY percent that causes jumps!
+                  transform: `translate3d(calc(-50% + ${diff * step}px), 0, 0)`,
+                  transition: isVisible
+                    ? "transform 0.55s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.4s ease"
+                    : "none",
                   opacity: isCenter ? 1 : isEdge ? (isMobile ? 0.6 : 0.65) : isVisible ? 0.8 : 0,
                   zIndex: isCenter ? 30 : 20 - Math.abs(diff),
                   pointerEvents: isVisible ? "auto" : "none",
+                  visibility: isVisible ? "visible" : "hidden",
                 }}
               >
                 {/* Card Box with Whisper-Light Border & Soft Diffused Shadow */}
                 <div
-                  className={`w-full bg-white rounded-[2px] overflow-hidden flex flex-col transition-all duration-700 ease-[cubic-bezier(0.25,1,0.35,1)] ${
+                  className={`w-full bg-white rounded-[2px] overflow-hidden flex flex-col transition-shadow duration-500 ${
                     isCenter
                       ? "border border-black/[0.06] shadow-[0_20px_45px_rgba(0,0,0,0.09),0_2px_8px_rgba(0,0,0,0.04)]"
                       : "border border-black/[0.04] shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
                   }`}
                 >
-                  {/* Top Image: Smoothly shrinks into landscape format when active (slower, calmer transition) */}
-                  <div
-                    className={`w-full bg-neutral-100 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.35,1)] ${
-                      isCenter
-                        ? "h-[170px] sm:h-[195px]" // Landscape ratio when active
-                        : "h-[210px] sm:h-[240px]" // Taller photo when inactive
-                    }`}
-                  >
+                  {/* Top Image: Constant height prevents layout thrashing & image resizing during slide */}
+                  <div className="w-full h-[180px] sm:h-[205px] bg-neutral-100 overflow-hidden">
                     <img
                       src={dish.image}
                       alt={dish.name}
                       loading="eager"
-                      className={`w-full h-full object-cover transition-transform duration-700 ${
+                      className={`w-full h-full object-cover transition-transform duration-500 ${
                         isCenter ? "scale-105" : "scale-100"
                       }`}
                     />
                   </div>
 
                   {/* Card Content Area */}
-                  <div className="w-full px-5 py-5 sm:px-6 sm:py-6 flex flex-col items-center text-center transition-all duration-700">
+                  <div className="w-full px-5 py-4 sm:px-6 sm:py-5 flex flex-col items-center text-center">
                     
                     {/* Location in Elegant Italic Serif */}
-                    <p className="font-serif italic text-xs sm:text-[13px] text-neutral-600 transition-colors">
+                    <p className="font-serif italic text-xs sm:text-[13px] text-neutral-600">
                       {dish.location}
                     </p>
 
                     {/* Dish Title in Bold Clean Uppercase with equal min-height */}
-                    <div className="min-h-[36px] sm:min-h-[40px] flex items-center justify-center mt-1">
+                    <div className="min-h-[34px] sm:min-h-[38px] flex items-center justify-center mt-1">
                       <h3 className="font-sans font-bold tracking-[1.5px] text-xs sm:text-[13px] uppercase text-black leading-snug">
                         {dish.name}
                       </h3>
                     </div>
 
-                    {/* Expanded Content: Smoothly Pops Up from Bottom to Top */}
+                    {/* Expanded Content: Downward reveal that never alters the card's top position */}
                     <div
-                      className={`w-full flex flex-col items-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.35,1)] ${
+                      className={`w-full flex flex-col items-center overflow-hidden transition-all duration-500 ease-out ${
                         isCenter
-                          ? "max-h-[300px] opacity-100 translate-y-0 mt-1 pointer-events-auto"
-                          : "max-h-0 opacity-0 translate-y-6 mt-0 pointer-events-none"
+                          ? "max-h-[260px] opacity-100 translate-y-0 mt-1 pointer-events-auto"
+                          : "max-h-0 opacity-0 -translate-y-2 mt-0 pointer-events-none"
                       }`}
                     >
                       {/* Thick Black Horizontal Dash */}
                       <div
-                        className={`w-8 h-[2px] bg-black my-3.5 transition-all duration-500 delay-100 ease-out ${
-                          isCenter ? "opacity-100 scale-x-100" : "opacity-0 scale-x-50"
+                        className={`w-8 h-[2px] bg-black my-3 transition-opacity duration-300 ${
+                          isCenter ? "opacity-100" : "opacity-0"
                         }`}
                       />
 
-                      {/* Dish Description: Popping up smoothly */}
+                      {/* Dish Description */}
                       <p
-                        className={`font-serif italic text-xs sm:text-[12.5px] text-neutral-800 leading-relaxed max-w-[260px] transition-all duration-600 delay-150 ease-out ${
-                          isCenter ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+                        className={`font-serif italic text-xs sm:text-[12.5px] text-neutral-800 leading-relaxed max-w-[260px] transition-opacity duration-400 ${
+                          isCenter ? "opacity-100" : "opacity-0"
                         }`}
                       >
                         {dish.description}
                       </p>
 
-                      {/* Solid Black Button: Popping up smoothly (Sub-tag text completely removed) */}
+                      {/* Solid Black Button */}
                       <div
-                        className="w-full bg-black text-white text-[10px] tracking-[3px] py-2.5 sm:py-3 text-center uppercase font-medium mt-5 transition-all duration-700 delay-200 ease-out"
+                        className="w-full bg-black text-white text-[10px] tracking-[3px] py-2.5 sm:py-3 text-center uppercase font-medium mt-4"
                       >
                         {dish.tag}
                       </div>
                     </div>
 
-                    {/* Minimal bottom spacing for inactive cards */}
+                    {/* Bottom spacing for inactive cards */}
                     {!isCenter && <div className="h-2" />}
                   </div>
                 </div>
@@ -264,8 +276,8 @@ export default function SignatureDishesCarousel() {
           })}
         </div>
 
-        {/* Carousel Controls: < 1 / 6 > (Tight spacing directly beneath cards) */}
-        <div className="flex items-center justify-center gap-6 mt-2 sm:mt-3">
+        {/* Carousel Controls: < 1 / 7 > */}
+        <div className="flex items-center justify-center gap-6 mt-1 sm:mt-2">
           {/* Previous Arrow Button */}
           <button
             onClick={handlePrev}
