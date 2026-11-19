@@ -1,72 +1,230 @@
 :root {
   --font-montserrat: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-* {
-  font-family: var(--font-montserrat) !important;
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  
+  --bg-main: #050505;
+  --bg-section: #0A0A0A;
+  --bg-card: #111111;
+  --gold-primary: #D6B477;
+  --gold-light: #E8C98D;
+  --text-ivory: #F4EBDD;
+  --text-body: #D0D0D0;
+  --text-muted: #999999;
+  --border-gold: #8C6A35;
+  --brand-red: #ED1C24;
 }
 
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-montserrat) !important;
+  background-color: #050505;
+  color: #D0D0D0;
+  font-family: var(--font-montserrat);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: #FFFFFF;
-  color: #1A1A1A;
-  font-family: var(--font-montserrat) !important;
+  background-color: #050505;
+  color: #D0D0D0;
+  font-family: var(--font-montserrat);
   font-weight: 300;
   letter-spacing: 0.015em;
   line-height: 1.65;
   overflow-x: hidden;
 }
 
-/* All headings, titles, serif classes mapped to Montserrat */
-h1, h2, h3, h4, h5, h6, .font-serif, .font-sans {
-  font-family: var(--font-montserrat) !important;
-  letter-spacing: -0.01em;
+/* Serif font for elegant luxury restaurant headings */
+.font-serif, .font-cormorant {
+  font-family: var(--font-cormorant), Georgia, serif !important;
 }
 
-/* Copy, buttons, labels and links strictly Montserrat */
-p, span, a, button, label, input, textarea, div {
-  font-family: var(--font-montserrat) !important;
+/* Sans font for clear modern readability */
+.font-sans, .font-montserrat {
+  font-family: var(--font-montserrat), system-ui, sans-serif !important;
 }
 
-/* Strict Montserrat Light helper classes */
-.font-light, body p, .montserrat-light {
-  font-family: var(--font-montserrat) !important;
-  font-weight: 300;
+/* Dining Experiences 3-column layout on laptop, 2-column on mobile */
+.dining-cards-grid {
+  display: grid !important;
+}
+@media (min-width: 1024px) {
+  .dining-cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 1023px) {
+  .dining-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Luxury Dark & Gold */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FDF2F2;
+  background: #050505;
 }
 ::-webkit-scrollbar-thumb {
-  background: #800C11;
-  border-radius: 4px;
+  background: #222222;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #6B0A0E;
+  background: #D6B477;
 }
 
-/* Smooth Train Effect Animation */
-@keyframes marqueeTrain {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+/* Smooth subtle transitions */
+a, button {
+  transition: all 0.3s ease;
 }
 
-.animate-train {
+/* Saol Display Luxury Typography */
+.font-saol,
+.Heading-title,
+.saol-heading {
+  font-family: 'Saol Display', 'Bodoni Moda', 'Cormorant Garamond', 'Didot', serif !important;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+.StandardHero--black .Heading-title,
+.StandardHero--white .Heading-title {
+  font-family: 'Saol Display', 'Bodoni Moda', 'Cormorant Garamond', 'Didot', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.StandardHero--white {
+  background-color: #ffffff;
+  color: #111111;
+}
+
+.StandardHero--white .Heading-title {
+  color: #000000;
+}
+
+/* Savour The Extraordinary Video Section */
+.savour-video-container {
+  width: 100%;
+  height: 580px;
+  min-height: 480px;
+  max-height: 75vh;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: #000;
+}
+
+@media (max-width: 1024px) {
+  .savour-video-container {
+    height: 480px;
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .savour-video-container {
+    height: 360px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .savour-video-container {
+    height: 280px;
+    min-height: 240px;
+  }
+}
+
+/* User Defined Hero Section CSS (Desktop) */
+.hero-section, .hero {
+  min-height: calc(100vh - 90px);
+  display: grid;
+  grid-template-columns: 45% 55%;
+  align-items: center;
+  max-width: 1500px;
+  margin: auto;
+  padding: 70px 6%;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image-container {
+  width: 100%;
   display: flex;
-  width: max-content;
-  animation: marqueeTrain 22s linear infinite;
+  align-items: center;
+  justify-content: center;
 }
 
-.animate-train:hover {
-  animation-play-state: paused;
+.hero-image {
+  width: 100%;
+  max-width: 820px;
+  height: 560px;
+  object-fit: contain;
+  mix-blend-mode: lighten;
+  transform: scale(1.05);
+}
+
+/* User Defined Hero Section CSS (Mobile @media max-width: 768px) */
+@media (max-width: 768px) {
+  .hero-section, .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 85px 20px 32px;
+    gap: 16px;
+    min-height: auto;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(48px, 13vw, 68px) !important;
+    line-height: 0.95 !important;
+    margin-bottom: 16px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 100%;
+    color: #D0D0D0;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .hero-image-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 540px;
+    object-fit: contain;
+    mix-blend-mode: lighten;
+    transform: scale(1.18);
+    transform-origin: center center;
+  }
 }

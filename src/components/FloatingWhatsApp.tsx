@@ -15,11 +15,6 @@ export default function FloatingWhatsApp() {
       <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out px-0 group-hover:px-2 text-sm font-semibold text-neutral-900">
         WhatsApp Helpline
       </span>
-      {/* Pulse ping effect */}
-      <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-600"></span>
-      </span>
     </a>
   );
 }
